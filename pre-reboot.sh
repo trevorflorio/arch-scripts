@@ -42,10 +42,10 @@ echo 'Installing audio...'
 pacman -S alsa-utils pulseaudio jack mpd
 
 echo 'Installing window manager...'
-pacman -S xorg xorg-xinit xaoutolock i3 compton nitrogen dmenu rofi
+pacman -S xorg xorg-xinit xautolock i3 compton nitrogen dmenu rofi
 
 echo 'Installing core apps...'
-pacman -S rxvt-unicode tilda pcmanfm ranger firefox lxappearance arandr xarchiver
+pacman -S rxvt-unicode tilda pcmanfm ranger firefox lxappearance arandr xarchiver gpicview
 
 echo 'Installing theme...' 
 pacman -S adapta-gtk-theme papirus-icon-theme ttf-font-awesome ttf-ubuntu-font-family terminus-font
