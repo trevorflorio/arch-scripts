@@ -31,3 +31,8 @@ cp polybar/fonts/* ~/.fonts
 cd ..
 touch .xinitrc
 echo 'exec i3' > .xinitrc
+
+sudo touch /etc/udev/hwdb.d/90-libinput-x220-touchpad-fw81.hwdb
+sudo echo "touchpad:i8042:*
+LIBINPUT_MODEL_LENOVO_X220_TOUCHPAD_FW81=1" > /etc/udev/hwdb.d/90-libinput-x220-touchpad-fw81.hwdb
+sudo udevadm hwdb --update && udevadm control --reload-rules && udevadm trigger
