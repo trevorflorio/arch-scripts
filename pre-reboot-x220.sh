@@ -30,7 +30,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ################################
 
 echo 'Installing basic utilities...'
-pacman -S networkmanager acpi tlp powertop htop light
+pacman -S networkmanager acpi tlp powertop htop light jsoncpp
 systemctl enable tlp.service tlp-sleep.service
 
 echo 'Installing graphics/display...'
