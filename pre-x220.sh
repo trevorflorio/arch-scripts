@@ -22,7 +22,7 @@ visudo
 #Install Bootloader
 echo 'Installing GRUB...'
 pacman -S grub
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 ################################
@@ -30,25 +30,23 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ################################
 
 echo 'Installing basic utilities...'
-pacman -S networkmanager acpi tlp powertop htop light
-systemctl enable tlp.service tlp-sleep.service
+pacman -S networkmanager acpi tlp powertop htop light jsoncpp
+systemctl enable tlp.service tlp-sleep.service NetworkManager.service
 
 echo 'Installing graphics/display...'
-pacman -S xf86-video-intel nvidia bumblebee bbswitch
-gpasswd -a trevor bumblebee
-systemctl enable bumblebeed.service
+pacman -S xf86-video-intel
 
 echo 'Installing audio...'
-pacman -S alsa-utils pulseaudio jack mpd
+pacman -S alsa-utils pulseaudio mpd
 
 echo 'Installing window manager...'
 pacman -S xorg xorg-xinit xautolock i3 compton nitrogen dmenu rofi
 
 echo 'Installing core apps...'
-pacman -S rxvt-unicode tilda pcmanfm ranger firefox lxappearance arandr xarchiver gpicview
+pacman -S rxvt-unicode pcmanfm ranger firefox lxappearance arandr xarchiver gpicview
 
 echo 'Installing theme...' 
-pacman -S adapta-gtk-theme papirus-icon-theme ttf-font-awesome ttf-ubuntu-font-family terminus-font
+pacman -S adapta-gtk-theme papirus-icon-theme ttf-font-awesome ttf-ubuntu-font-family
 
 echo 'Copying post-reboot.sh to /home/trevor'
 cp post-reboot.sh /home/trevor
