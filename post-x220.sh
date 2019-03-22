@@ -1,38 +1,47 @@
 #!/bin/bash
 
-ehco 'Installing AUR helper'
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -sri
-cd ..
-rm -rf yay
+echo "Checking Internet Connection..."
+wget -q --spider http://google.com
 
-echo 'Installing Core AUR packages...'
-yay -S twmn-git polybar
+if [ $? -eq 0 ]; then	
 
-echo 'Setting up config files...'
-cd ..
-git clone https://github.com/trevorflorio/dotfiles
-cd dotfiles
+	echo 'Installing AUR helper'
+	git clone https://aur.archlinux.org/yay.git
+	cd yay
+	makepkg -sri
+	cd ..
+	rm -rf yay
 
-mkdir ~/.config/i3
-ln -f .i3config ~/.config/i3/config
+	echo 'Installing Core AUR packages...'
+	yay -S twmn-git polybar-git sigi-git
 
-mkdir ~/.config/rofi
-ln -f .roficonfig ~/.config/rofi/config
+	echo 'Setting up config files...'
+	cd ..
+	git clone https://github.com/trevorflorio/dotfiles
+	cd dotfiles
 
-ln -f .Xdefaults ~/.Xdefaults
-ln -f .bashrc ~/.bashrc
+	mkdir ~/.config/i3
+	ln -f .i3config ~/.config/i3/config
 
-cp -r polybar ~/.config
-mkdir ~/.fonts
-cp polybar/fonts/* ~/.fonts
+	mkdir ~/.config/rofi
+	ln -f .roficonfig ~/.config/rofi/config
 
-cd ..
-touch .xinitrc
-echo 'exec i3' > .xinitrc
+	ln -f .Xdefaults ~/.Xdefaults
+	ln -f .bashrc ~/.bashrc
 
-sudo touch /etc/udev/hwdb.d/90-libinput-x220-touchpad-fw81.hwdb
-sudo echo "touchpad:i8042:*
-LIBINPUT_MODEL_LENOVO_X220_TOUCHPAD_FW81=1" > /etc/udev/hwdb.d/90-libinput-x220-touchpad-fw81.hwdb
-sudo udevadm hwdb --update && udevadm control --reload-rules && udevadm trigger
+	cp -r polybar ~/.config
+	mkdir ~/.fonts
+	cp polybar/fonts/* ~/.fonts
+
+	cd ..
+	touch .xinitrc
+	echo 'exec i3' > .xinitrc
+
+	sudo touch /etc/udev/hwdb.d/90-libinput-x220-touchpad-fw81.hwdb
+	sudo echo "touchpad:i8042:*
+	LIBINPUT_MODEL_LENOVO_X220_TOUCHPAD_FW81=1" > /etc/udev/hwdb.d/90-libinput-x220-touchpad-fw81.hwdb
+	sudo udevadm hwdb --update && udevadm control --reload-rules && udevadm trigger
+
+else
+	echo "Need to connect to the internet! Exiting..."
+fi

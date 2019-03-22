@@ -40,16 +40,16 @@ echo 'Installing audio...'
 pacman -S alsa-utils pulseaudio mpd
 
 echo 'Installing window manager...'
-pacman -S xorg xorg-xinit xautolock i3 compton nitrogen dmenu rofi
+pacman -S xorg xorg-xinit xautolock i3 compton nitrogen dmenu rofi xfce4-panel
 
 echo 'Installing core apps...'
 pacman -S rxvt-unicode pcmanfm ranger firefox lxappearance arandr xarchiver gpicview
 
 echo 'Installing theme...' 
-pacman -S adapta-gtk-theme papirus-icon-theme ttf-font-awesome ttf-ubuntu-font-family
+pacman -S arc-gtk-theme papirus-icon-theme ttf-font-awesome ttf-ubuntu-font-family
 
 echo 'Copying post-reboot.sh to /home/trevor'
-cp post-reboot.sh /home/trevor
+cp post-x220.sh /home/trevor
 chown trevor /home/trevor/post-reboot.sh
 
 echo 'Done!'
